@@ -16,7 +16,7 @@ class FeatExtractor(nn.Module):
         self.conv7 = model_utils.conv( batchNorm,128, 128, k=3, stride=1, pad=1)
 
     def forward(self, x):
-        out = self.conv1(x)
+        out = self.conv1(x.cuda())
         out = self.conv2(out)
         out = self.conv3(out)
         out = self.conv4(out)

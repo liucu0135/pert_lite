@@ -45,16 +45,16 @@ if __name__ == '__main__':
     args.lr_decay=0.2
     args.in_img_num=32
     args.val_batch=8
-    args.save_root= 'data/Training5shadow/'
-    args.cp_dir= 'data/Training5shadow/'
+    args.save_root= 'data/checkpoints/'
+    args.cp_dir= 'data/checkpoints/'
     args.bert = False
     args.in_light = True
     args.in_mask = False
     args.seed=None
     args.benchmark='none'
-    torch.cuda.set_device(0)
+    torch.cuda.set_device(1)
     args.crop_h=32
     args.crop_w=32
-    args.retrain = "data/Training5shadow/checkp_20.pth.tar"
+    # args.retrain = "data/Training5shadow/checkp_20.pth.tar"
     # args.fuse_type='mean'
     main(args)

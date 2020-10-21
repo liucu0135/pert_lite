@@ -43,7 +43,7 @@ class Light_stage_dataset(data.Dataset):
             self.names = [obj + '_{:03d}.png'.format(i) for i in range(252)]
 
         select_idx= np.arange(252)
-        select_idx =[s for s in select_idx if self.l_dir[s,2]>0.8]
+        select_idx =[s for s in select_idx if self.l_dir[s,2]>0.0] #192
         # select_idx =select_idx[::2]
         # args.in_img_num=len(select_idx)
         # if self.args.in_img_num==250:
@@ -61,25 +61,20 @@ class Light_stage_dataset(data.Dataset):
 
 
         for idx, img_name in enumerate(img_list):
-            # img = Image.open(img_name)
-            # img=img.resize((256,256))
-            # img=np.array(img)/255.0/intents[idx]/2
-                  # / 255.0/intents[idx]
-            img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0
-            # print(np.max(img))
+            img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0#/10
+            # img = img**1.5
             img = np.dot(img, intents[idx])
-            temp=np.zeros_like(img)
-            temp[img>0.1]=img[img>0.1]
-            img=temp
-            # plt.imshow(img)
-            # print(np.histogram(img[:,:,:3]))
-            # plt.hist(img.view(-1), bins=20)
-            # plt.show()
+            # print('loading, {}'.format(img_name))
+            # temp=np.zeros_like(img)
+            # temp[img>0.1]=img[img>0.1]
+            # img=temp
 
             imgs.append(img[:,:,:3])
             # print(np.max(img[:,:,:3]))
 
         img = np.concatenate(imgs, 2)
+        # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
+        print(list(np.histogram(img, bins=[0, 0.001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6])[0] // (np.sum(img>0)/1000)))
         # print(np.histogram(img, bins=[0, 0.001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]))
 
         item = {'img': img}

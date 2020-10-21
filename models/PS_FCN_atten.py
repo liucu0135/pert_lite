@@ -53,6 +53,7 @@ class FeatExtractor(nn.Module):
         # self.conv7 = model_utils.conv3d(batchNorm, 128, 128, k=[1,3,3], stride=1, pad=[0,1,1])
 
         # less atten
+        # self.bn0=nn.BatchNorm3d(64, affine=False)
         self.conv1 = model_utils.conv3d(batchNorm, 6, 64,  k=[1,1,1], stride=1, pad=[0,0,0])
         self.at1=Attention_layer(64)
         self.bn1=nn.BatchNorm3d(64, affine=False)
@@ -77,6 +78,8 @@ class FeatExtractor(nn.Module):
 
     def forward(self, x):
         # print(x.shape)
+        # x=x/2
+        x=torch.nn.functional.normalize(x,2,2)
         out = self.conv1(x)
         out = self.at1(out)
         out = self.bn1(out)
@@ -148,7 +151,7 @@ class PS_FCN(nn.Module):
         net_in =[torch.cat([img,light], dim=1) for img, light in zip(img_split,light_split)]
         # net_in =[torch.cat([img,mask,light], dim=1) for img, mask, light in zip(img_split,mask_split,light_split)]
         net_in=torch.stack(net_in, dim=2)
-        feat = self.extractor(net_in)
+        feat = self.extractor(net_in.cuda())
         normal = self.regressor(feat)
         return normal
 

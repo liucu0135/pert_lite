@@ -93,13 +93,14 @@ class DiLiGenT_main(data.Dataset):
         for idx, img_name in enumerate(img_list):
             img = imread(img_name).astype(np.float32) / 255.0
             # shadow = imread(img_name[:-4]+'s'+img_name[-4:]).astype(np.float32) / 255.0#for shadowing only
-            print(np.max(img))
+            # print(np.max(img))
             img = np.dot(img, intens[idx])
             # img = np.concatenate([img,shadow], 2)[:,:,:-2]#for shadowing only
             imgs.append(img)
         img = np.concatenate(imgs, 2)
-        # print(np.histogram(img, bins=[0,0.001,0.1,0.2,0.3,0.4,0.5,0.6]))
         mask = self._getMask(obj)
+        # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
+        print(list(np.histogram(img, bins=[0, 0.001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6])[0] // (np.sum(img>0)/1000)))
         down = 4
         if mask.shape[0] % down != 0 or mask.shape[1] % down != 0:
             pad_h = down - mask.shape[0] % down

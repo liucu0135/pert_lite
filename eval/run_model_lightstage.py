@@ -31,7 +31,7 @@ args.test_batch=1
 args.benchmark = 'Light_stage_dataset'
 # args.benchmark = 'CNNPS_data'
 args.workers=1
-args.in_img_num = 37
+args.in_img_num = 146
 torch.cuda.set_device(0)
 
 
@@ -47,7 +47,7 @@ def main(args):
         # print(sum(p.numel() for p in model.parameters() if p.requires_grad))
         recorder = recorders.Records(args.log_dir)
         # r=test_utils.test_split2c(args, 'test', test_loader, model, log, 1, recorder, padding=4, stride=128)
-        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=4, stride=64, split=True)
+        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=5, stride=100, split=True)
 
 
 if __name__ == '__main__':

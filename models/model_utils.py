@@ -15,8 +15,8 @@ def parseData(args, sample, timer=None, split='train'):
     input, target, mask = sample['img'], sample['N'], sample['mask']
 
     if timer: timer.updateTime('ToCPU')
-    if args.cuda:
-        input  = input.cuda(); target = target.cuda(); mask = mask.cuda();
+    # if args.cuda:
+    #     input  = input.cuda(); target = target.cuda(); mask = mask.cuda();
 
     input_var  = torch.autograd.Variable(input)
     target_var = torch.autograd.Variable(target)
@@ -29,7 +29,7 @@ def parseData(args, sample, timer=None, split='train'):
         right_size=torch.tensor(input.shape).numpy()
         right_size[-3]=args.in_img_num*3
         light = sample['light'].expand(tuple(right_size))
-        if args.cuda: light = light.cuda()
+        # if args.cuda: light = light.cuda()
         light_var = torch.autograd.Variable(light);
         data['l'] = light_var
     if  'obj' in sample.keys():
