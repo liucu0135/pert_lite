@@ -20,7 +20,7 @@ def main(args):
     for epoch in range(args.start_epoch, args.epochs):
         scheduler.step()
         recorder.insertRecord('train', 'lr', epoch, scheduler.get_lr()[0])
-        # test_utils.test(args, 'val', val_loader, model, log, epoch, recorder)
+        test_utils.test(args, 'val', val_loader, model, log, epoch, recorder)
 
         train_utils.train(args, train_loader, model, criterion, optimizer, log, epoch, recorder)
         if epoch % args.save_intv == 0:
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     args.use_BN=True
     args.init_lr=1e-5
     args.batch=64
-    args.lr_decay=0.2
+    args.lr_decay=0.5
     args.in_img_num=32
     args.val_batch=8
     args.save_root= 'data/checkpoints/'

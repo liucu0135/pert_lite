@@ -27,7 +27,7 @@ def test(args, split, loader, model, log, epoch, recorder):
             data = model_utils.parseData(args, sample, timer, split)
             input = model_utils.getInput(args, data)
             out_var = model(input); timer.updateTime('Forward')
-            acc = eval_utils.calNormalAcc(data['tar'].data, out_var.data, data['m'].data)
+            acc = eval_utils.calNormalAcc(data['tar'].cpu().data, out_var.cpu().data, data['m'].cpu().data)
             recorder.updateIter(split, acc.keys(), acc.values())
 
             iters = i + 1
@@ -45,7 +45,7 @@ def test(args, split, loader, model, log, epoch, recorder):
 
             if iters % save_intv == 0:
                 pred = (out_var.data + 1) / 2
-                masked_pred = pred * data['m'].data.expand_as(out_var.data)
+                masked_pred = pred.cpu() * data['m'].data.expand_as(out_var.data)
                 log.saveNormalResults(masked_pred, split, epoch, iters)
 
     opt = {'split': split, 'epoch': epoch, 'recorder': recorder}

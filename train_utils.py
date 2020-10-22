@@ -26,8 +26,8 @@ def train(args, loader, model, criterion, optimizer, log, epoch, recorder):
         # else:
         out_var = model(input).squeeze(); timer.updateTime('Forward')
         optimizer.zero_grad()
-        out_var=out_var * (data['m'])
-        loss = criterion.forward(out_var, data['tar']); timer.updateTime('Crit');
+        out_var=out_var * (data['m'].cuda())
+        loss = criterion.forward(out_var, data['tar'].cuda()); timer.updateTime('Crit');
         criterion.backward(); timer.updateTime('Backward')
 
 
