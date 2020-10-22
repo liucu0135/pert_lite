@@ -3,7 +3,8 @@ import os
 import numpy as np
 from imageio import imread
 import matplotlib.pyplot as plt
-
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 import torch
 import torch.utils.data as data
