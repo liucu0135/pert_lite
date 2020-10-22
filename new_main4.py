@@ -42,7 +42,7 @@ if __name__ == '__main__':
     args.use_BN=True
     args.init_lr=1e-5
     args.batch=64
-    args.lr_decay=0.5
+    args.lr_decay=0.2
     args.in_img_num=32
     args.val_batch=8
     args.save_root= 'data/checkpoints/'
