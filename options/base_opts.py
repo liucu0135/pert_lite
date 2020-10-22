@@ -8,7 +8,7 @@ class BaseOpts(object):
         #### Device Arguments ####
         self.parser.add_argument('--cuda',        default=True,  action='store_false')
         self.parser.add_argument('--time_sync',   default=False, action='store_true')
-        self.parser.add_argument('--workers',     default=8,     type=int)
+        self.parser.add_argument('--workers',     default=4,     type=int)
         self.parser.add_argument('--seed',        default=0,     type=int)
 
         #### Model Arguments ####
