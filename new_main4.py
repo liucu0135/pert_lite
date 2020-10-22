@@ -52,7 +52,7 @@ if __name__ == '__main__':
     args.in_mask = False
     args.seed=None
     args.benchmark='none'
-    torch.cuda.set_device(1)
+    torch.cuda.set_device(0)
     args.crop_h=32
     args.crop_w=32
     # args.retrain = "data/Training5shadow/checkp_20.pth.tar"
