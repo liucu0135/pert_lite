@@ -26,7 +26,7 @@ class TrainOpts(BaseOpts):
         self.parser.add_argument('--solver',      default='adam', help='adam|sgd')
         self.parser.add_argument('--milestones',  default=[5, 10, 15, 20, 25], nargs='+', type=int)
         self.parser.add_argument('--init_lr',     default=1e-3, type=float)
-        self.parser.add_argument('--lr_decay',    default=0.5,  type=float)
+        self.parser.add_argument('--lr_decay',    default=0.2,  type=float)
         self.parser.add_argument('--beta_1',      default=0.9,  type=float, help='adam')
         self.parser.add_argument('--beta_2',      default=0.999,type=float, help='adam')
         self.parser.add_argument('--momentum',    default=0.9,  type=float, help='sgd')
