@@ -8,6 +8,13 @@ from options  import run_model_opts
 from models import custom_model
 from utils  import logger, recorders
 import numpy as np
+from visdom import Visdom
+
+
+viz = Visdom()
+assert viz.check_connection()
+
+
 
 args = run_model_opts.RunModelOpts().parse()
 
@@ -49,7 +56,7 @@ def main(args):
         # print(sum(p.numel() for p in model.parameters() if p.requires_grad))
         recorder = recorders.Records(args.log_dir)
         # r=test_utils.test_split2c(args, 'test', test_loader, model, log, 1, recorder, padding=4, stride=128)
-        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=5, stride=100, split=True)
+        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=5, stride=100, split=True, vis=viz)
 
 
 if __name__ == '__main__':

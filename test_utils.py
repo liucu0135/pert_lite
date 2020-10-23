@@ -133,7 +133,7 @@ def test_split(args, split, loader, model, log, epoch, recorder, padding=8, stri
     opt = {'split': split, 'epoch': epoch, 'recorder': recorder}
     return recorder.records['test']['n_err_mean'][1]
 
-def estimate(args, iteration, loader, model, log, epoch, recorder, padding=8, stride=32, split=True, dataset='light_stage'):
+def estimate(args, iteration, loader, model, log, epoch, recorder, padding=8, stride=32, split=True, dataset='light_stage', vis=None):
 
     # model.eval()
     print('---- Start %s Epoch %d: %d batches ----' % (split, epoch, len(loader)))
@@ -182,6 +182,7 @@ def estimate(args, iteration, loader, model, log, epoch, recorder, padding=8, st
             else:
                 out_var=model(input)
             timer.updateTime('Forward')
+            vis.image(out_var[0]/2+0.5)
             vutils.save_image(out_var[0]/2+0.5, './result/'+dataset+'/{}_{}_{}.png'.format(args.model,i,iteration))
             print('image　saved, {}_{}.png'.format(args.model,i))
             # emap = out_var.permute(2,3,1,0).squeeze()
