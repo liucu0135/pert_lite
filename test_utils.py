@@ -110,9 +110,9 @@ def test_split(args, split, loader, model, log, epoch, recorder, padding=8, stri
 
             emap[0,0]=90
 
-            plt.clf()
-            plt.imshow(emap.detach().cpu(), cmap='jet',vmin=0,vmax=90)
-            plt.savefig('./result/sparse/{}_{}_{}.png'.format(args.model,i, args.in_img_num))
+            # plt.clf()
+            # plt.imshow(emap.detach().cpu(), cmap='jet',vmin=0,vmax=90)
+            # plt.savefig('./result/sparse/{}_{}_{}.png'.format(args.model,i, args.in_img_num))
             # plt.imshow(data['m'].detach().cpu().squeeze(), cmap='gray',vmin=0,vmax=1)
             # # plt.savefig('./result/{}_{}m.png'.format(args.model,i))
 
