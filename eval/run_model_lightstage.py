@@ -14,8 +14,8 @@ args = run_model_opts.RunModelOpts().parse()
 
 args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
-args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
-# args.retrain = "data/checkpoints/checkp_15.pth.tar"
+# args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
+args.retrain = "data/checkpoints/checkp_25.pth.tar"
 args.use_BN=True
 #
 # args.pert=False
