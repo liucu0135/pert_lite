@@ -38,12 +38,12 @@ def test(args, split, loader, model, log, epoch, recorder):
                 set.append(acc['n_err_mean'])
                 errors.append(set)
 
-            if iters % disp_intv == 0:
+            if iters % 20 == 0:
                 opt = {'split':split, 'epoch':epoch, 'iters':iters, 'batch':len(loader),
                        'timer':timer, 'recorder': recorder}
                 log.printItersSummary(opt)
 
-            if iters % save_intv == 0:
+            if iters % 20 == 0:
                 pred = (out_var.data + 1) / 2
                 masked_pred = pred.cpu() * data['m'].data.expand_as(out_var.data)
                 log.saveNormalResults(masked_pred, split, epoch, iters)

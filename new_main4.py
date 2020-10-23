@@ -20,7 +20,7 @@ def main(args):
     for epoch in range(args.start_epoch, args.epochs):
         scheduler.step()
         recorder.insertRecord('train', 'lr', epoch, scheduler.get_lr()[0])
-        test_utils.test(args, 'val', val_loader, model, log, epoch, recorder)
+        # test_utils.test(args, 'val', val_loader, model, log, epoch, recorder)
 
         train_utils.train(args, train_loader, model, criterion, optimizer, log, epoch, recorder)
         if epoch % args.save_intv == 0:
@@ -55,6 +55,7 @@ if __name__ == '__main__':
     torch.cuda.set_device(0)
     args.crop_h=32
     args.crop_w=32
+    args.train_disp=200
     # args.retrain = "data/Training5shadow/checkp_20.pth.tar"
     # args.fuse_type='mean'
     main(args)
