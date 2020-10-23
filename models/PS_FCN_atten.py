@@ -79,7 +79,8 @@ class FeatExtractor(nn.Module):
     def forward(self, x):
         # print(x.shape)
         # x=x/2
-        # x=torch.nn.functional.normalize(x,2,2)
+        x_mean=torch.std(x,unbiased=True,dim=2).unsqueeze(2).expand(x.shape)
+        # x=x/(x_mean+0.0000001)
         out = self.conv1(x)
         out = self.at1(out)
         out = self.bn1(out)

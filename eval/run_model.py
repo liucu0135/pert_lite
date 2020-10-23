@@ -1,7 +1,7 @@
 import sys, os, shutil
 import torch
 sys.path.append('.')
-
+import xlwt
 import test_utils
 from datasets import custom_data_loader
 from options  import run_model_opts
@@ -14,33 +14,37 @@ args = run_model_opts.RunModelOpts().parse()
 
 args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
-args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
-# args.retrain = "data/checkpoints/checkp_15.pth.tar"
+# args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
+args.retrain = "data/checkpoints/checkp_25.pth.tar"#7.5@ epoch 15
 args.use_BN=True
+
+# # args.retrain = "data/Training4shadow/checkp_6.pth.tar"#@6:7.99 wo bear
+# # args.retrain = "data/legacy/less_atten/checkp_28.pth.tar"
 #
 # args.pert=False
 
-# args.model = 'PS_FCN_run'
-# args.retrain = "data/models/PS-FCN_B_S_32.pth.tar"
+# args.model = 'PS_FCN'
+# args.retrain = "data/models/PS-FCN_B_S_32.pth.tar.1"
 # args.use_BN=False
-
-#44.85
-
+# #44.85
 
 
+args.in_img_num=96
 args.test_batch=1
-# args.benchmark = 'DiLiGenT_main'
-args.benchmark = 'Light_stage_dataset'
+args.benchmark = 'DiLiGenT_main'
 # args.benchmark = 'CNNPS_data'
+# args.benchmark = 'Light_stage_dataset'
 args.workers=1
-args.in_img_num = 146
+# args.retrain = "data/Training4shadow/checkp_5.pth.tar"
+# args.retrain = "data/Training/history/2_10/calib/train/checkp_16.pth.tar"
+# args.in_img_num = 'set1'
 torch.cuda.set_device(0)
-
+repeat=1
 
 
 def main(args):
     rs=[]
-    for i in range(5,6):
+    for i in range(repeat):
         # path="data/Training5shadow/checkp_{}.pth.tar".format(i)
         # args.retrain=path
         log = logger.Logger(args)
@@ -49,7 +53,21 @@ def main(args):
         # print(sum(p.numel() for p in model.parameters() if p.requires_grad))
         recorder = recorders.Records(args.log_dir)
         # r=test_utils.test_split2c(args, 'test', test_loader, model, log, 1, recorder, padding=4, stride=128)
-        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=5, stride=100, split=True)
+        r=test_utils.test_split(args, 'test', test_loader, model, log, 1, recorder, padding=10, stride=60)
+        rs.append(r)
+    # test_utils.test(args, 'test', test_loader, model, log, 1, recorder)
+    # rs=np.stack(rs)
+    # every_mean=np.mean(rs,axis=0)
+    # mean=np.mean(rs)
+    # print(every_mean,mean)
+
+    print(rs)
+    # workbook = xlwt.Workbook(encoding='ascii')
+    # worksheet = workbook.add_sheet('My Worksheet', cell_overwrite_ok=True)
+    # for i,r in zip(range(repeat),rs):
+    #     for ii,rr in zip(range(9),r):
+    #         worksheet.write(i + 1, ii, label=rr)
+    # workbook.save('sparse_pro10.xls')
 
 
 if __name__ == '__main__':
