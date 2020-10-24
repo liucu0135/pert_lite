@@ -54,13 +54,12 @@ class PS_Synth_Dataset(data.Dataset):
         if self.args.crop:
             img, normal = pms_transforms.randomCrop(img, normal, [crop_h, crop_w])
 
-        if self.args.color_aug:
-            img = (img * np.random.uniform(1, 3)).clip(0, 2)
+        # if self.args.color_aug:
+        #     img = (img * np.random.uniform(1, 3)).clip(0, 2)
 
         if self.args.intents_aug:
-            max=np.max(img)
-            img = img * np.random.uniform(0.2,5)
-            img = np.clip(img,0,max)
+            img = img * np.random.uniform(1,5)
+            img = np.clip(img,0,1)
             img = img * np.random.uniform(0.2, 5)
 
 

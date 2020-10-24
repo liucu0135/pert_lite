@@ -100,7 +100,11 @@ class DiLiGenT_main(data.Dataset):
         img = np.concatenate(imgs, 2)
         mask = self._getMask(obj)
         # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
-        print(list(np.histogram(img, bins=[0, 0.001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6])[0] // (np.sum(img>0)/1000)))
+
+        max = np.max(img)
+        img = img * 5
+        img = np.clip(img, 0, max)
+        print(list(np.histogram(img, bins=[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5])[0] // (np.sum(img>0)/1000)))
         down = 4
         if mask.shape[0] % down != 0 or mask.shape[1] % down != 0:
             pad_h = down - mask.shape[0] % down
