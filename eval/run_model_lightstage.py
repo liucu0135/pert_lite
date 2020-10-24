@@ -22,7 +22,7 @@ args = run_model_opts.RunModelOpts().parse()
 args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
-args.retrain = "data/checkpoints/checkp_28.pth.tar"
+args.retrain = "data/checkpoints/checkp_20.pth.tar"
 args.use_BN=True
 #
 # args.pert=False
@@ -40,7 +40,7 @@ args.test_batch=1
 args.benchmark = 'Light_stage_dataset'
 # args.benchmark = 'CNNPS_data'
 args.workers=1
-args.in_img_num = 146
+args.in_img_num = 119
 torch.cuda.set_device(0)
 
 
