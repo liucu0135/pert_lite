@@ -59,7 +59,7 @@ class PS_Synth_Dataset(data.Dataset):
 
         if self.args.intents_aug:
             max=np.max(img)
-            img = img * np.random.uniform(1,3)
+            img = img * np.random.uniform(1,10)
             img = np.clip(img,0,max)
             img = img*np.random.uniform(0.2,5)
 
