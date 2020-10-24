@@ -58,9 +58,11 @@ class PS_Synth_Dataset(data.Dataset):
         #     img = (img * np.random.uniform(1, 3)).clip(0, 2)
 
         if self.args.intents_aug:
-            img = img * np.random.uniform(1,5)
+
+            img = img * np.random.uniform(0.2,5)
             img = np.clip(img,0,1)
-            img = img * np.random.uniform(0.2, 5)
+            img /= np.max(img+0.00000001)
+            # img = img * np.random.uniform(0.2, 5)
 
 
         if self.args.noise_aug:
