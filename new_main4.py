@@ -40,7 +40,7 @@ if __name__ == '__main__':
     # args.resume = "data/Training4shadow/checkp_26.pth.tar"
     args.model='PS_FCN_atten'
     args.use_BN=True
-    args.init_lr=1e-5
+    # args.init_lr=1e-5
     args.batch=64
     args.lr_decay=0.2
     args.in_img_num=32
