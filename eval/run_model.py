@@ -14,8 +14,8 @@ args = run_model_opts.RunModelOpts().parse()
 
 args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
-args.retrain = "data/Training5shadow/checkp_17.pth.tar"#7.5@ epoch 15
-# args.retrain = "data/checkpoints/checkp_17.pth.tar"#7.5@ epoch 15
+# args.retrain = "data/Training5shadow/checkp_23.pth.tar"#7.5@ epoch 15
+args.retrain = "data/checkpoints/checkp_23.pth.tar"#7.5@ epoch 15
 args.use_BN=True
 
 # # args.retrain = "data/Training4shadow/checkp_6.pth.tar"#@6:7.99 wo bear
@@ -38,7 +38,7 @@ args.workers=1
 # args.retrain = "data/Training4shadow/checkp_5.pth.tar"
 # args.retrain = "data/Training/history/2_10/calib/train/checkp_16.pth.tar"
 # args.in_img_num = 'set1'
-torch.cuda.set_device(0)
+torch.cuda.set_device(1)
 repeat=1
 
 
