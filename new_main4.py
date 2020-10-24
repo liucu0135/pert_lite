@@ -37,12 +37,12 @@ if __name__ == '__main__':
     # torch.manual_seed(args.seed)
 
     # args.resume='/home/lhy/PycharmProjects/PS-FCN/data/models/PS-FCN_B_S_32.pth.tar'
-    args.resume = "data/checkpoints/legacy.pth.tar"
     args.model='PS_FCN_atten'
     args.use_BN=True
-    args.init_lr=1e-5
+    # args.resume = "data/checkpoints/legacy.pth.tar"
+    # args.init_lr=1e-5
+    # args.lr_decay=0.2
     args.batch=64
-    args.lr_decay=0.2
     args.in_img_num=32
     args.val_batch=8
     args.save_root= 'data/checkpoints/'
