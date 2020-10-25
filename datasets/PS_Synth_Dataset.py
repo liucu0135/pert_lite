@@ -51,6 +51,10 @@ class PS_Synth_Dataset(data.Dataset):
             sc_w = np.random.randint(crop_w, w)
             img, normal = pms_transforms.rescale(img, normal, [sc_h, sc_w])
 
+
+
+
+
         if self.args.crop:
             img, normal = pms_transforms.randomCrop(img, normal, [crop_h, crop_w])
 
@@ -59,10 +63,15 @@ class PS_Synth_Dataset(data.Dataset):
 
         if self.args.intents_aug:
 
-            img = img * np.random.uniform(0.2,5)
-            img = np.clip(img,0,1)
-            # img /= np.max(img+0.00000001)
-            img = img * np.random.uniform(0.2, 5)
+
+            # img = np.clip(img,0,1)
+            # # img /= np.max(img+0.00000001)
+            # img = img * np.random.uniform(0.1, 10)
+
+            imgs = np.split(img, img.shape[2]//3, 2)
+            imgs = pms_transforms.normalize(imgs)
+            img = np.concatenate(imgs, 2)
+            # img = img * np.random.uniform(0.2,5)
 
 
         if self.args.noise_aug:

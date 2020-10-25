@@ -17,6 +17,16 @@ def rgbToGray(img):
     img = img[:,:,0] * 0.229 + img[:,:,1] * 0.587 + img[:,:,2] * 0.114
     return img.reshape(h, w, 1)
 
+def normalize(imgs):
+    h, w, c = imgs[0].shape
+    imgs = [img.reshape(-1, 1) for img in imgs]
+    img = np.hstack(imgs)
+    norm = np.sqrt((img * img).clip(0.0).sum(1))
+    img = img / (norm.reshape(-1,1) + 1e-10)
+    imgs = np.split(img, img.shape[1], axis=1)
+    imgs = [img.reshape(h, w, -1) for img in imgs]
+    return imgs
+
 def normalToMask(normal, thres=0.01):
     """
     Due to the numerical precision of uint8, [0, 0, 0] will save as [127, 127, 127] in gt normal,
