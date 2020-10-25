@@ -95,6 +95,7 @@ class DiLiGenT_main(data.Dataset):
             # shadow = imread(img_name[:-4]+'s'+img_name[-4:]).astype(np.float32) / 255.0#for shadowing only
             # print(np.max(img))
             img = np.dot(img, intens[idx])
+            img=img/np.max(img)
             # img = np.concatenate([img,shadow], 2)[:,:,:-2]#for shadowing only
             imgs.append(img)
         img = np.concatenate(imgs, 2)
