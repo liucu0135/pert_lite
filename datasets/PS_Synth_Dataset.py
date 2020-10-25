@@ -62,7 +62,7 @@ class PS_Synth_Dataset(data.Dataset):
             img = img * np.random.uniform(0.2,5)
             img = np.clip(img,0,1)
             # img /= np.max(img+0.00000001)
-            # img = img * np.random.uniform(0.2, 5)
+            img = img * np.random.uniform(0.2, 5)
 
 
         if self.args.noise_aug:
