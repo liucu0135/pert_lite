@@ -98,6 +98,13 @@ class DiLiGenT_main(data.Dataset):
             # img=img/np.max(img)
             # img = np.concatenate([img,shadow], 2)[:,:,:-2]#for shadowing only
             imgs.append(img)
+
+
+        # normalize images
+        imgs = np.split(img, img.shape[2] // 3, 2)
+        imgs = pms_transforms.normalize(imgs)
+
+
         img = np.concatenate(imgs, 2)
         mask = self._getMask(obj)
         # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
