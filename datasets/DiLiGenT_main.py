@@ -89,7 +89,7 @@ class DiLiGenT_main(data.Dataset):
 
         imgs = []
         for idx, img_name in enumerate(img_list):
-            img = imread(img_name).astype(np.float32) / 255.0
+            img = imread(img_name).astype(np.float32) / 255.0*10.0
             # shadow = imread(img_name[:-4]+'s'+img_name[-4:]).astype(np.float32) / 255.0#for shadowing only
             # print(np.max(img))
             # img=np.clip(img*5,0,1)
