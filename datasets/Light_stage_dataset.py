@@ -78,7 +78,7 @@ class Light_stage_dataset(data.Dataset):
         # imgs = np.split(img, img.shape[2] // 3, 2)
         # imgs = pms_transforms.normalize(imgs)
         img = np.concatenate(imgs, 2)
-        img=img**2
+
 
         # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
         print(list(np.histogram(img[img>0], bins=[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7,0.8,0.9,1])[0] // (np.sum(img>0)/1000)))

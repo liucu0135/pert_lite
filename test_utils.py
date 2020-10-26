@@ -151,6 +151,7 @@ def estimate(args, iteration, loader, model, log, epoch, recorder, padding=8, st
             input[0] = F.pad(input=input[0], pad=(padding, padding, padding, padding), mode='constant', value=0)
             input[1] = F.pad(input=input[1], pad=(padding, padding, padding, padding), mode='constant', value=0)
             # input[2] = F.pad(input=input[2].repeat(1,3,1,1), pad=(padding, padding, padding, padding), mode='constant', value=0)
+            mask=torch.sum(input[0],dim=1).repeat(3,1,1)
 
 
                 # input[2]=input[2][:,60:,:,:]
@@ -182,8 +183,15 @@ def estimate(args, iteration, loader, model, log, epoch, recorder, padding=8, st
             else:
                 out_var=model(input)
             timer.updateTime('Forward')
-            vis.image(out_var[0]/2+0.5)
-            vutils.save_image(out_var[0]/2+0.5, './result/'+dataset+'/{}_{}_{}.png'.format(args.model,i,iteration))
+
+
+            temp=out_var[0]/2+0.5
+            # temp=temp[:,padding:-padding,padding:-padding]
+            mask=mask[:,padding:-padding,padding:-padding]
+            im2show=torch.zeros_like(temp)
+            im2show[mask>0]=temp[mask>0]
+            vis.image(im2show)
+            vutils.save_image(im2show, './result/'+dataset+'/{}_{}_{}.png'.format(args.model,i,iteration))
             print('image　saved, {}_{}.png'.format(args.model,i))
             # emap = out_var.permute(2,3,1,0).squeeze()
 
