@@ -106,7 +106,7 @@ class DiLiGenT_main(data.Dataset):
 
 
         img = np.concatenate(imgs, 2)
-        img=img**2
+        # img=img**2
         mask = self._getMask(obj)
         # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
 
