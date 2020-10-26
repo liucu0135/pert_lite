@@ -42,9 +42,9 @@ if __name__ == '__main__':
     # args.retrain = "data/checkpoints/legacy.pth.tar"
     # args.init_lr=1e-5
     args.lr_decay=0.5
-    args.batch=64
+    args.batch=32
     args.in_img_num=32
-    args.val_batch=8
+    args.val_batch=16
     args.save_root= 'data/checkpoints/'
     args.cp_dir= 'data/checkpoints/'
     args.bert = False
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     torch.cuda.set_device(0)
     args.crop_h=32
     args.crop_w=32
-    args.train_disp=200
+    args.train_disp=400
     # args.retrain = "data/Training5shadow/checkp_20.pth.tar"
     # args.fuse_type='mean'
     main(args)

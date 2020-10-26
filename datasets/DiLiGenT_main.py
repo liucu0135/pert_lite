@@ -101,7 +101,7 @@ class DiLiGenT_main(data.Dataset):
 
 
         # normalize images
-        imgs = np.split(img, img.shape[2] // 3, 2)
+        # imgs = np.split(img, img.shape[2] // 3, 2)
         imgs = pms_transforms.normalize(imgs)
 
 

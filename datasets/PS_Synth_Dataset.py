@@ -64,14 +64,17 @@ class PS_Synth_Dataset(data.Dataset):
         if self.args.intents_aug:
 
 
-            # img = np.clip(img,0,1)
             # # img /= np.max(img+0.00000001)
-            # img = img * np.random.uniform(0.1, 10)
+            img = img * np.random.uniform(0.1, 10)
+            img = np.clip(img,0,1)
 
-            imgs = np.split(img, img.shape[2]//3, 2)
-            imgs = pms_transforms.normalize(imgs)
-            img = np.concatenate(imgs, 2)
-            # img = img * np.random.uniform(0.2,5)
+            # normalization which does not work
+            # imgs = np.split(img, img.shape[2]//3, 2)
+            # imgs = pms_transforms.normalize(imgs)
+            # img = np.concatenate(imgs, 2)
+
+
+            img = img * np.random.uniform(0.2,5)
 
 
         if self.args.noise_aug:
