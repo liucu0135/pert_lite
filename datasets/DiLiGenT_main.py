@@ -82,7 +82,7 @@ class DiLiGenT_main(data.Dataset):
         select_idx = np.random.permutation(len(self.names))
         img_list   = [os.path.join(self.root, obj, self.names[i]) for i in select_idx]
         intens     = [np.diag(1 / self.intens[obj][i]) for i in select_idx]
-
+        print(np.histogram(1 / np.sum(self.intens[obj][select_idx], axis=1)))
         normal_path = os.path.join(self.root, obj, 'Normal_gt.mat')
         normal = sio.loadmat(normal_path)
         normal = normal['Normal_gt']

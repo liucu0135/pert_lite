@@ -42,7 +42,7 @@ class Light_stage_dataset(data.Dataset):
         else:
             self.names = [obj + '_{:03d}.png'.format(i) for i in range(252)]
 
-        select_idx= np.arange(252)
+        select_idx= np.arange(253)
         select_idx =[s for s in select_idx if self.l_dir[s,2]>0.7] #192
         # select_idx =select_idx[::2]
         # args.in_img_num=len(select_idx)
@@ -54,6 +54,9 @@ class Light_stage_dataset(data.Dataset):
 
 
 
+        # print(np.histogram(1/np.sum(self.l_intens[select_idx],axis=1)))   #([36,  7,  4,  0,  0,  0,  2,  3,  0,  1],[0.3,0.5   0.68   -----2.0]
+#
+
         imgs = []
         # intents=self.l_intens[select_idx,:]
         intents = [np.diag(1 / self.l_intens[i]) for i in select_idx]
@@ -62,8 +65,8 @@ class Light_stage_dataset(data.Dataset):
 
         for idx, img_name in enumerate(img_list):
             img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0
-            img = img**2
-            img = np.dot(img, intents[idx])
+            # img = img**3
+            img = np.dot(img, np.clip(intents[idx],0,1))
             # img=img/np.max(img)
             # print('loading, {}'.format(img_name))
             # temp=np.zeros_like(img)
