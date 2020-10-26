@@ -52,7 +52,7 @@ def test(args, split, loader, model, log, epoch, recorder):
     log.printEpochSummary(opt)
     return errors
 
-def test_split(args, split, loader, model, log, epoch, recorder, padding=8, stride=32):
+def test_split(args, split, loader, model, log, epoch, recorder, padding=8, stride=32, viz=None):
 
     model.eval()
     print('---- Start %s Epoch %d: %d batches ----' % (split, epoch, len(loader)))
@@ -109,7 +109,7 @@ def test_split(args, split, loader, model, log, epoch, recorder, padding=8, stri
             emap = eval_utils.calNormalAngularMap(data['tar'].cpu().data, out_var.cpu().data, data['m'].cpu().data)
 
             emap[0,0]=90
-
+            viz.image(out_var[0]/2+0.5)
             # plt.clf()
             # plt.imshow(emap.detach().cpu(), cmap='jet',vmin=0,vmax=90)
             # plt.savefig('./result/sparse/{}_{}_{}.png'.format(args.model,i, args.in_img_num))

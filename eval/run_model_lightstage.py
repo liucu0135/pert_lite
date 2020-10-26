@@ -36,8 +36,8 @@ args.use_BN=False
 
 
 args.test_batch=1
-# args.benchmark = 'DiLiGenT_main'
-args.benchmark = 'Light_stage_dataset'
+args.benchmark = 'DiLiGenT_main'
+# args.benchmark = 'Light_stage_dataset'
 # args.benchmark = 'CNNPS_data'
 args.workers=1
 args.in_img_num = 119
