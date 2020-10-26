@@ -4,6 +4,7 @@ from torch.nn.init import kaiming_normal_
 from . import model_utils
 import math
 
+
 class Attention_layer(nn.Module):
     def __init__(self, ch_in, batch=False, factor=1, bias=True, extra=False):
         super(Attention_layer, self).__init__()

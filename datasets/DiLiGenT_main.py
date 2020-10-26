@@ -79,9 +79,7 @@ class DiLiGenT_main(data.Dataset):
                 np.random.seed()
                 select_idx = np.random.permutation(len(self.names))[:self.args.in_img_num]
 
-
-
-
+        select_idx = np.random.permutation(len(self.names))
         img_list   = [os.path.join(self.root, obj, self.names[i]) for i in select_idx]
         intens     = [np.diag(1 / self.intens[obj][i]) for i in select_idx]
 
@@ -94,7 +92,7 @@ class DiLiGenT_main(data.Dataset):
             img = imread(img_name).astype(np.float32) / 255.0
             # shadow = imread(img_name[:-4]+'s'+img_name[-4:]).astype(np.float32) / 255.0#for shadowing only
             # print(np.max(img))
-            img=np.clip(img*5,0,1)
+            # img=np.clip(img*5,0,1)
             img = np.dot(img, intens[idx])
             # img=img/np.max(img)
             # img = np.concatenate([img,shadow], 2)[:,:,:-2]#for shadowing only
@@ -114,7 +112,7 @@ class DiLiGenT_main(data.Dataset):
 
         # img = img * 5
         # img = np.clip(img, 0, 1)
-        print(list(np.histogram(img[img>0], bins=[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7,0.8,0.9,1])[0] // (np.sum(img>0)/1000)))
+        print(list(np.histogram(img[img>0], bins=[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7,0.8,0.9,1])[0] ))#// (np.sum(img>0)/1000)
         down = 4
         if mask.shape[0] % down != 0 or mask.shape[1] % down != 0:
             pad_h = down - mask.shape[0] % down
