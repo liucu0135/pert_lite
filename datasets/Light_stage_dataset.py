@@ -76,7 +76,7 @@ class Light_stage_dataset(data.Dataset):
         # # img=img/np.max(img)
         # img=np.clip(img,0,1)
 
-        imgs = np.split(img, img.shape[2] // 3, 2)
+        # imgs = np.split(img, img.shape[2] // 3, 2)
         imgs = pms_transforms.normalize(imgs)
         img = np.concatenate(imgs, 2)
 
