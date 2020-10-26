@@ -43,7 +43,7 @@ class Light_stage_dataset(data.Dataset):
             self.names = [obj + '_{:03d}.png'.format(i) for i in range(252)]
 
         select_idx= np.arange(252)
-        select_idx =[s for s in select_idx if self.l_dir[s,2]>0.2] #192
+        select_idx =[s for s in select_idx if self.l_dir[s,2]>0.7] #192
         # select_idx =select_idx[::2]
         # args.in_img_num=len(select_idx)
         # if self.args.in_img_num==250:

@@ -27,20 +27,20 @@ args.use_BN=True
 #
 # args.pert=False
 
-args.model = 'PS_FCN_run'
-args.retrain = "data/models/PS-FCN_B_S_32.pth.tar"
-args.use_BN=False
+# args.model = 'PS_FCN_run'
+# args.retrain = "data/models/PS-FCN_B_S_32.pth.tar"
+# args.use_BN=False
 
 #44.85
 
 
 
 args.test_batch=1
-args.benchmark = 'DiLiGenT_main'
-# args.benchmark = 'Light_stage_dataset'
+# args.benchmark = 'DiLiGenT_main'
+args.benchmark = 'Light_stage_dataset'
 # args.benchmark = 'CNNPS_data'
 args.workers=1
-args.in_img_num = 119
+args.in_img_num = 53
 torch.cuda.set_device(0)
 
 
