@@ -66,7 +66,7 @@ class Light_stage_dataset(data.Dataset):
         for idx, img_name in enumerate(img_list):
             img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0*2
             # img = img**3
-            img = np.dot(img, intents[idx],0,1)
+            img = np.dot(img, intents[idx])
             # img=img/np.max(img)
             # print('loading, {}'.format(img_name))
             # temp=np.zeros_like(img)
