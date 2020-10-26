@@ -65,8 +65,10 @@ class PS_Synth_Dataset(data.Dataset):
 
 
             # # img /= np.max(img+0.00000001)
-            img = img * np.random.uniform(0.1, 10)
+            img = img ** np.random.uniform(0.5,2)
+            img = img * np.random.uniform(0.2, 5)
             img = np.clip(img,0,1)
+
 
             # normalization which does not work
             # imgs = np.split(img, img.shape[2]//3, 2)
