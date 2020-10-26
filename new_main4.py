@@ -31,6 +31,7 @@ def main(args):
 
         # if model.regressor.atten_factor
 
+
 if __name__ == '__main__':
     args = train_opts.TrainOpts().parse()
     log = logger.Logger(args)
