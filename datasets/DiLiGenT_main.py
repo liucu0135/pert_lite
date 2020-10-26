@@ -105,7 +105,8 @@ class DiLiGenT_main(data.Dataset):
         # imgs = pms_transforms.normalize(imgs)
 
 
-        img = np.concatenate(imgs, 2)*10
+        img = np.concatenate(imgs, 2)
+        img=np.sqrt(img)
         mask = self._getMask(obj)
         # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
 
