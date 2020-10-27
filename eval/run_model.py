@@ -18,14 +18,13 @@ args = run_model_opts.RunModelOpts().parse()
 args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/Training5shadow/checkp_23.pth.tar"#7.5@ epoch 15
-args.retrain = 'data/checkpoints/atten_no_norm/checkp_25.pth.tar'
+# args.retrain = 'data/checkpoints/atten_no_norm/checkp_25.pth.tar'
 # args.retrain = "data/checkpoints/checkp_15.pth.tar"
 # args.retrain = "data/checkpoints/legacy.pth.tar"
 args.use_BN=False
 
 # # args.retrain = "data/Training4shadow/checkp_6.pth.tar"#@6:7.99 wo bear
 # # args.retrain = "data/legacy/less_atten/checkp_28.pth.tar"
-#
 # args.pert=False
 
 # args.model = 'PS_FCN'
