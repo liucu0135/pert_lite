@@ -46,8 +46,8 @@ if __name__ == '__main__':
     args.batch=32
     args.in_img_num=32
     args.val_batch=16
-    args.save_root= 'data/checkpoints/no_atten_no_norm'
-    args.cp_dir= 'data/checkpoints/no_atten_no_norm'
+    args.save_root= 'data/checkpoints/atten_no_norm'
+    args.cp_dir= 'data/checkpoints/atten_no_norm'
     args.bert = False
     args.in_light = True
     args.in_mask = False
