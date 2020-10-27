@@ -27,9 +27,9 @@ args.use_BN=True
 #
 # args.pert=False
 
-args.model = 'PS_FCN'
-args.retrain = "data/models/PS-FCN_B_S_32.pth.tar"
-args.use_BN=False
+# args.model = 'PS_FCN'
+# args.retrain = "data/models/PS-FCN_B_S_32.pth.tar"
+# args.use_BN=False
 # #44.85
 
 
