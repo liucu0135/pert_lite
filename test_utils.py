@@ -205,7 +205,7 @@ def estimate(args, iteration, loader, model, log, epoch, recorder, padding=8, st
 
 
 
-def test_split_rob(args, split, loader, model, log, epoch, recorder, padding=8, stride=32, noise_level=1):
+def test_split_rob(args, split, loader, model, log, epoch, recorder, padding=8, stride=32, noise_level=1, noise_type='normal'):
 
     model.eval()
     print('---- Start %s Epoch %d: %d batches ----' % (split, epoch, len(loader)))
