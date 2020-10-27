@@ -41,7 +41,7 @@ args.test_batch=1
 args.benchmark = 'Light_stage_dataset'
 # args.benchmark = 'CNNPS_data'
 args.workers=1
-args.in_img_num = 53
+args.in_img_num = 119
 torch.cuda.set_device(0)
 
 
