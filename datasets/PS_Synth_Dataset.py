@@ -64,10 +64,10 @@ class PS_Synth_Dataset(data.Dataset):
         if self.args.intents_aug:
 
 
-            # # img /= np.max(img+0.00000001)
-            img = img ** np.random.uniform(0.5,2)
-            img = img * np.random.uniform(0.2, 5)
-            img = np.clip(img,0,1)
+
+            # img = img ** np.random.uniform(0.5,2)
+            # img = img * np.random.uniform(0.2, 5)
+            # img = np.clip(img,0,1)
 
 
             # normalization which does not work
