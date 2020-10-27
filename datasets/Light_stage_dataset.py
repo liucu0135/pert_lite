@@ -64,7 +64,7 @@ class Light_stage_dataset(data.Dataset):
 
 
         for idx, img_name in enumerate(img_list):
-            img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0*2
+            img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0
             # img = img**3
             img = np.dot(img, intents[idx])
             # img=img/np.max(img)
@@ -81,7 +81,7 @@ class Light_stage_dataset(data.Dataset):
         # imgs = np.split(img, img.shape[2] // 3, 2)
         # imgs = pms_transforms.normalize(imgs)
         img = np.concatenate(imgs, 2)
-        img =np.clip(img,0,2)
+        # img =np.clip(img,0,2)
 
 
         # [798.0, 981.0, 10.0, 0.0, 0.0, 0.0, 0.0]
