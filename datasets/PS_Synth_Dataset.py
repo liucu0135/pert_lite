@@ -44,8 +44,9 @@ class PS_Synth_Dataset(data.Dataset):
             imgs.append(img)
 
 
-        # ambient light
-        imgs=[img+imgs[np.random.randint(32)]*np.random.uniform(0,0.1) for img in imgs]
+        # # ambient light
+        # imgs=[img+imgs[np.random.randint(32)]*abs(np.random.normal(0,0.03)) for img in imgs]
+        # imgs=[img+imgs[np.random.randint(32)]*abs(np.random.normal(0,0.03)) for img in imgs]
 
         img = np.concatenate(imgs, 2)
 
@@ -67,10 +68,8 @@ class PS_Synth_Dataset(data.Dataset):
         #     img = (img * np.random.uniform(1, 3)).clip(0, 2)
 
         if self.args.intents_aug:
-            img = img ** np.random.uniform(0.5,2)
+            img = img ** np.random.uniform(1,3).clip(img,0,1)
             # img = img * np.random.uniform(0.2, 5)
-            img = np.clip(img,0,1)
-
             img = img * np.random.uniform(0.2,5)
 
 
