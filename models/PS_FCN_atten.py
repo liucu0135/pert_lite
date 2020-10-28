@@ -56,7 +56,7 @@ class FeatExtractor(nn.Module):
         # less atten
         # self.bn0=nn.BatchNorm3d(64, affine=False)
         self.conv1 = model_utils.conv3d(batchNorm, 6, 64,  k=[1,1,1], stride=1, pad=[0,0,0])
-        self.at1=Attention_layer(64)
+        # self.at1=Attention_layer(64)
         # self.bn1=nn.BatchNorm3d(64, affine=False)
         self.conv2 = model_utils.conv3d(batchNorm, 64,   128, k=[1,3,3], stride=[1,2,2], pad=[0,1,1])
         self.conv3 = model_utils.conv3d(batchNorm, 128,  128, k=[1,1,1], stride=1, pad=[0,0,0])
@@ -83,7 +83,7 @@ class FeatExtractor(nn.Module):
         # x_mean=torch.std(x,unbiased=True,dim=2).unsqueeze(2).expand(x.shape)
         # x=x/(torch.max(x)+0.000000001)
         out = self.conv1(x)
-        out = self.at1(out)
+        # out = self.at1(out)
         # out = self.bn1(out)
         out = self.conv2(out)
         out0 = self.conv3(out)
