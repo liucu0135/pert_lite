@@ -6,7 +6,7 @@ import math
 
 
 class Attention_layer(nn.Module):
-    def __init__(self, ch_in, batch=False, factor=1, bias=True, extra=False):
+    def __init__(self, ch_in, batch=False, factor=1, bias=False, extra=False):
         super(Attention_layer, self).__init__()
         # self.atten_factor=nn.Parameter(torch.zeros(1).cuda())
         self.atten_factor=1
@@ -15,7 +15,7 @@ class Attention_layer(nn.Module):
         self.atten_k = nn.Conv3d(ch_in, self.shurink, kernel_size=1, stride=1, padding=0, bias=bias)
         self.atten_q = nn.Conv3d(ch_in, self.shurink, kernel_size=1, stride=1, padding=0, bias=bias)
         self.atten_v = nn.Conv3d(ch_in, self.shurink, kernel_size=1, stride=1, padding=0, bias=bias)
-        self.atten = nn.Conv3d(self.shurink, ch_in, kernel_size=1, stride=1, padding=0, bias=bias)
+        self.atten = nn.Conv3d(self.shurink, ch_in, kernel_size=1, stride=1, padding=0, bias=True)
 
     def forward(self, x):
         shape=x.shape
@@ -57,16 +57,16 @@ class FeatExtractor(nn.Module):
         # self.bn0=nn.BatchNorm3d(64, affine=False)
         self.conv1 = model_utils.conv3d(batchNorm, 6, 64,  k=[1,1,1], stride=1, pad=[0,0,0])
         self.at1=Attention_layer(64)
-        self.bn1=nn.BatchNorm3d(64, affine=False)
+        # self.bn1=nn.BatchNorm3d(64, affine=False)
         self.conv2 = model_utils.conv3d(batchNorm, 64,   128, k=[1,3,3], stride=[1,2,2], pad=[0,1,1])
         self.conv3 = model_utils.conv3d(batchNorm, 128,  128, k=[1,1,1], stride=1, pad=[0,0,0])
         self.conv31 = model_utils.conv3d(batchNorm, 128,  128, k=[1,3,3], stride=1, pad=[0,1,1])
         self.at2=Attention_layer(128)
-        self.bn2=nn.BatchNorm3d(128, affine=False)
+        # self.bn2=nn.BatchNorm3d(128, affine=False)
         self.conv5 = model_utils.conv3d(batchNorm, 128,  128, k=[1,1,1], stride=1, pad=[0,0,0])
         self.conv51 = model_utils.conv3d(batchNorm, 128,  128, k=[1,3,3], stride=1, pad=[0,1,1])
         self.at3=Attention_layer(128)
-        self.bn3=nn.BatchNorm3d(128, affine=False)
+        # self.bn3=nn.BatchNorm3d(128, affine=False)
         self.conv7 = model_utils.conv3d(batchNorm, 128, 128, k=[1,3,3], stride=1, pad=[0,1,1])
 
 
