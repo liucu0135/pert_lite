@@ -38,12 +38,13 @@ class Light_stage_dataset(data.Dataset):
         obj = self.objs[index]
         # select_idx=np.arrange(0,self.args.in_img_num)
         if index==0 or index==3:
-            self.names=[ obj+'_{:04d}.png'.format(i) for i in range(252)]
+            self.names=[ obj+'_{:04d}.png'.format(i) for i in range(253)]
         else:
-            self.names = [obj + '_{:03d}.png'.format(i) for i in range(252)]
+            self.names = [obj + '_{:03d}.png'.format(i) for i in range(253)]
 
         select_idx= np.arange(253)
-        select_idx =[s for s in select_idx if self.l_dir[s,2]>0.2] #0.2:119
+        # select_idx =[s for s in select_idx if self.l_dir[s,2]] #0.2:119
+        select_idx =[s for s in select_idx if self.l_dir[s,2]>0.5] #0.2:119
         # select_idx =select_idx[::2]
         # args.in_img_num=len(select_idx)
         # if self.args.in_img_num==250:
@@ -67,6 +68,7 @@ class Light_stage_dataset(data.Dataset):
             img = imread(img_name).astype(np.float32)[:,:,:3] / 255.0
             # img = img**3
             img = np.dot(img, intents[idx])
+            img=img.clip(0,2)
             # img=img/np.max(img)
             # print('loading, {}'.format(img_name))
             # temp=np.zeros_like(img)

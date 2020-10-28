@@ -79,21 +79,24 @@ class DiLiGenT_main(data.Dataset):
                 np.random.seed()
                 select_idx = np.random.permutation(len(self.names))[:self.args.in_img_num]
 
-        select_idx = np.random.permutation(len(self.names))
+
+
         img_list   = [os.path.join(self.root, obj, self.names[i]) for i in select_idx]
         intens     = [np.diag(1 / self.intens[obj][i]) for i in select_idx]
-        print(np.histogram(1 / np.sum(self.intens[obj][select_idx], axis=1)))
         normal_path = os.path.join(self.root, obj, 'Normal_gt.mat')
         normal = sio.loadmat(normal_path)
         normal = normal['Normal_gt']
 
         imgs = []
+
         for idx, img_name in enumerate(img_list):
+            # ambiant=imread(img_list[np.random.randint(0,96)]).astype(np.float32) / 255.0
             img = imread(img_name).astype(np.float32) / 255.0
             # shadow = imread(img_name[:-4]+'s'+img_name[-4:]).astype(np.float32) / 255.0#for shadowing only
             # print(np.max(img))
             # img=np.clip(img*5,0,1)
             # img=img**2
+            # img+=(ambiant*0.1)
             img = np.dot(img, intens[idx])
             # img=img/np.max(img)
             # img = np.concatenate([img,shadow], 2)[:,:,:-2]#for shadowing only

@@ -21,7 +21,7 @@ args.model = 'PS_FCN_atten'
 # args.retrain = 'data/checkpoints/atten_no_norm/checkp_25.pth.tar'
 # args.retrain = "data/checkpoints/checkp_15.pth.tar"
 # args.retrain = "data/checkpoints/legacy.pth.tar"
-args.retrain = 'data/checkpoints/atten_nobias/checkp_15.pth.tar'
+args.retrain = 'data/checkpoints/atten_nobias/checkp_29.pth.tar'
 args.use_BN=False
 
 # # args.retrain = "data/Training4shadow/checkp_6.pth.tar"#@6:7.99 wo bear
@@ -43,7 +43,7 @@ args.workers=1
 # args.retrain = "data/Training4shadow/checkp_5.pth.tar"
 # args.retrain = "data/Training/history/2_10/calib/train/checkp_16.pth.tar"
 # args.in_img_num = 'set1'
-torch.cuda.set_device(0)
+torch.cuda.set_device(1)
 repeat=1
 
 

@@ -42,6 +42,11 @@ class PS_Synth_Dataset(data.Dataset):
         for i in img_list:
             img = imread(i).astype(np.float32) / 255.0
             imgs.append(img)
+
+
+        # ambient light
+        imgs=[img+imgs[np.random.randint(32)]*np.random.uniform(0,0.1) for img in imgs]
+
         img = np.concatenate(imgs, 2)
 
         h, w, c = img.shape
@@ -62,21 +67,14 @@ class PS_Synth_Dataset(data.Dataset):
         #     img = (img * np.random.uniform(1, 3)).clip(0, 2)
 
         if self.args.intents_aug:
-
-
-
-            # img = img ** np.random.uniform(0.5,2)
+            img = img ** np.random.uniform(0.5,2)
             # img = img * np.random.uniform(0.2, 5)
-            # img = np.clip(img,0,1)
-
-
-            # normalization which does not work
-            # imgs = np.split(img, img.shape[2]//3, 2)
-            # imgs = pms_transforms.normalize(imgs)
-            # img = np.concatenate(imgs, 2)
-
+            img = np.clip(img,0,1)
 
             img = img * np.random.uniform(0.2,5)
+
+
+
 
 
         if self.args.noise_aug:

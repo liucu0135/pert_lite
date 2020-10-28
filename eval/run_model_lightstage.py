@@ -23,7 +23,7 @@ args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/checkpoints/legacy.pth.tar"
-args.retrain = 'data/checkpoints/atten_nobias/checkp_15.pth.tar'
+args.retrain = 'data/checkpoints/atten_nobias/checkp_29.pth.tar'
 args.use_BN=False
 #
 # args.pert=False
@@ -41,7 +41,7 @@ args.test_batch=1
 args.benchmark = 'Light_stage_dataset'
 # args.benchmark = 'CNNPS_data'
 args.workers=1
-args.in_img_num = 119
+args.in_img_num = 80
 torch.cuda.set_device(0)
 
 
@@ -57,7 +57,7 @@ def main(args):
         # print(sum(p.numel() for p in model.parameters() if p.requires_grad))
         recorder = recorders.Records(args.log_dir)
         # r=test_utils.test_split2c(args, 'test', test_loader, model, log, 1, recorder, padding=4, stride=128)
-        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=10, stride=100, split=True, vis=viz)
+        test_utils.estimate(args, i, test_loader, model, log, 1, recorder, padding=5, stride=50, split=True, vis=viz)
 
 
 if __name__ == '__main__':
