@@ -41,7 +41,8 @@ if __name__ == '__main__':
     args.model='PS_FCN_atten'
     args.use_BN=False
     # args.retrain = "data/checkpoints/legacy.pth.tar"
-    # args.init_lr=1e-5
+    # args.init_lr=1e
+    # -5
     args.lr_decay=0.2
     args.batch=64
     args.in_img_num=32
