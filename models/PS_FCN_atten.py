@@ -88,7 +88,7 @@ class FeatExtractor(nn.Module):
         out = self.conv2(out)
         out0 = self.conv3(out)
         out = out0+self.conv31(out)
-        out = self.at2(out)
+        # out = self.at2(out)
         # out = self.bn2(out)
         out0 = self.conv5(out)
         out = out0+self.conv51(out)
