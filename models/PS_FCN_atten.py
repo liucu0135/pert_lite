@@ -83,7 +83,7 @@ class FeatExtractor(nn.Module):
         # x_mean=torch.std(x,unbiased=True,dim=2).unsqueeze(2).expand(x.shape)
         # x=x/(torch.max(x)+0.000000001)
         out = self.conv1(x)
-        # out = self.at1(out)
+        out = self.at1(out)
         # out = self.bn1(out)
         out = self.conv2(out)
         out0 = self.conv3(out)
@@ -92,7 +92,7 @@ class FeatExtractor(nn.Module):
         # out = self.bn2(out)
         out0 = self.conv5(out)
         out = out0+self.conv51(out)
-        out = self.at3(out)
+        # out = self.at3(out)
         # out = self.bn3(out)
         out_feat = self.conv7(out)
         return out_feat
