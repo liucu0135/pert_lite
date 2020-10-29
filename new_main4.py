@@ -57,7 +57,7 @@ if __name__ == '__main__':
     torch.cuda.set_device(0)
     args.crop_h=32
     args.crop_w=32
-    args.train_disp=400
+    args.train_disp=200
     # args.retrain = "data/Training5shadow/checkp_20.pth.tar"
     # args.fuse_type='mean'
     main(args)

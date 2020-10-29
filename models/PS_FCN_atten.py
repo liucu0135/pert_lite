@@ -15,7 +15,7 @@ class Attention_layer(nn.Module):
         self.atten_k = nn.Conv3d(ch_in, self.shurink, kernel_size=1, stride=1, padding=0, bias=bias)
         self.atten_q = nn.Conv3d(ch_in, self.shurink, kernel_size=1, stride=1, padding=0, bias=bias)
         self.atten_v = nn.Conv3d(ch_in, self.shurink, kernel_size=1, stride=1, padding=0, bias=bias)
-        self.atten = nn.Conv3d(self.shurink, ch_in, kernel_size=1, stride=1, padding=0, bias=True)
+        self.atten = nn.Conv3d(self.shurink, ch_in, kernel_size=1, stride=1, padding=0, bias=bias)
 
     def forward(self, x):
         shape=x.shape
@@ -84,15 +84,21 @@ class FeatExtractor(nn.Module):
         # x=x/(torch.max(x)+0.000000001)
         out = self.conv1(x)
         out = self.at1(out)
+        m = nn.LayerNorm(out.size()[1:], elementwise_affine=False)
         # out = self.bn1(out)
+        out = m(out)
         out = self.conv2(out)
         out0 = self.conv3(out)
         out = out0+self.conv31(out)
         out = self.at2(out)
+        m = nn.LayerNorm(out.size()[1:], elementwise_affine=False)
+        out = m(out)
         # out = self.bn2(out)
         out0 = self.conv5(out)
         out = out0+self.conv51(out)
         out = self.at3(out)
+        m = nn.LayerNorm(out.size()[1:], elementwise_affine=False)
+        out = m(out)
         # out = self.bn3(out)
         out_feat = self.conv7(out)
         return out_feat
