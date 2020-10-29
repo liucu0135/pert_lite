@@ -45,7 +45,7 @@ class PS_Synth_Dataset(data.Dataset):
 
 
         # ambient light
-        imgs=[img+imgs[np.random.randint(32)]*np.random.uniform(0,0.1) for img in imgs]
+        # imgs=[img+imgs[np.random.randint(32)]*np.random.uniform(0,0.1) for img in imgs]
 
         img = np.concatenate(imgs, 2)
 
