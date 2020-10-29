@@ -21,7 +21,7 @@ args.model = 'PS_FCN_atten'
 # args.retrain = 'data/checkpoints/atten_no_norm/checkp_25.pth.tar'
 # args.retrain = "data/checkpoints/checkp_15.pth.tar"
 # args.retrain = "data/checkpoints/legacy.pth.tar"
-args.retrain = 'data/checkpoints/atten_nobias/checkp_29.pth.tar'
+args.retrain = 'data/checkpoints/atten_nobias/checkp_14.pth.tar'
 args.use_BN=False
 
 # # args.retrain = "data/Training4shadow/checkp_6.pth.tar"#@6:7.99 wo bear
