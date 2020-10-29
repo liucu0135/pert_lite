@@ -23,7 +23,7 @@ args.model = 'PS_FCN_atten'
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/Training5shadow/checkp_25.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/checkpoints/legacy.pth.tar"
-args.retrain = 'data/checkpoints/atten_nobias/checkp_15.pth.tar'
+args.retrain = 'data/checkpoints/atten_nobias/checkp_18.pth.tar'
 args.use_BN=False
 #
 # args.pert=False
