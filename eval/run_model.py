@@ -43,7 +43,7 @@ args.workers=1
 # args.retrain = "data/Training4shadow/checkp_5.pth.tar"
 # args.retrain = "data/Training/history/2_10/calib/train/checkp_16.pth.tar"
 # args.in_img_num = 'set1'
-torch.cuda.set_device(1)
+torch.cuda.set_device(0)
 repeat=1
 
 
