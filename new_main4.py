@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     # args.resume='/home/lhy/PycharmProjects/PS-FCN/data/models/PS-FCN_B_S_32.pth.tar'
     args.model='PS_FCN_atten'
-    args.use_BN=False
+    args.use_BN=True
     # args.retrain = "data/checkpoints/legacy.pth.tar"
     # args.init_lr=1e
     # -5
@@ -47,8 +47,8 @@ if __name__ == '__main__':
     args.batch=32
     args.in_img_num=32
     args.val_batch=16
-    args.save_root= 'data/checkpoints/atten_nobias'
-    args.cp_dir= 'data/checkpoints/atten_nobias'
+    args.save_root= 'data/checkpoints/no_atten_no_norm'
+    args.cp_dir= 'data/checkpoints/no_atten_no_norm'
     args.bert = False
     args.in_light = True
     args.in_mask = False
