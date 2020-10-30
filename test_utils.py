@@ -286,11 +286,11 @@ def test_split_rob(args, split, loader, model, log, epoch, recorder, padding=8, 
             out_var=F.pad(out_var, pad=(0, 612%stride,0 ,512%stride), mode='constant', value=0)
 
             timer.updateTime('Forward')
-            acc = eval_utils.calNormalAcc(data['tar'].data, out_var.data, data['m'].data)
-            emap = eval_utils.calNormalAngularMap(data['tar'].data, out_var.data, data['m'].data)
-            plt.clf()
-            plt.imshow(emap.detach().cpu(), cmap='jet',vmin=0,vmax=90)
-            plt.savefig('./result/robust/{}_{}_{}.png'.format(args.model,i, noise_level))
+            acc = eval_utils.calNormalAcc(data['tar'].cpu().data, out_var.cpu().data, data['m'].cpu().data)
+            # emap = eval_utils.calNormalAngularMap(data['tar'].cpu().data, out_var.cpu().data, data['m'].cpu().data)
+            # plt.clf()
+            # plt.imshow(emap.detach().cpu(), cmap='jet',vmin=0,vmax=90)
+            # plt.savefig('./result/robust/{}_{}_{}.png'.format(args.model,i, noise_level))
             recorder.updateIter(split, acc.keys(), acc.values())
 
             iters = i + 1
@@ -301,7 +301,7 @@ def test_split_rob(args, split, loader, model, log, epoch, recorder, padding=8, 
 
             if iters % save_intv == 0:
                 pred = (out_var.data + 1) / 2
-                masked_pred = pred * data['m'].data.expand_as(out_var.data)
+                masked_pred = pred.cpu() * data['m'].data.expand_as(out_var.data)
                 log.saveNormalResults(masked_pred, split, epoch, iters)
                 # log.saveErrorResults(emap, split, epoch, iters)
 

@@ -15,16 +15,18 @@ args = run_model_opts.RunModelOpts().parse()
 # args.retrain = "data/Training4shadow/checkp_6.pth.tar"#@6:7.99 wo bear
 # args.retrain = "data/legacy/less_atten/checkp_28.pth.tar"
 
-# args.model = 'PS_FCN_atten'
+args.model = 'PS_FCN_atten'
+# args.retrain = "data/checkpoints/legacy.pth.tar"
+args.retrain = "data/checkpoints/checkp_15.pth.tar"
 # args.retrain = "data/Training5shadow/checkp_5.pth.tar"#7.5@ epoch 15
 # args.retrain = "data/legacy/0227res/checkp_15.pth.tar"#7.5@ epoch 15
-# args.use_BN=True
+args.use_BN=True
 
 args.pert=False
 
-args.model = 'PS_FCN'
-args.retrain = "data/models/PS-FCN_B_S_32.pth.tar.1"
-args.use_BN=False
+# args.model = 'PS_FCN'
+# args.retrain = "data/models/PS-FCN_B_S_32.pth.tar.1"
+# args.use_BN=False
 
 
 
@@ -34,7 +36,7 @@ args.benchmark = 'DiLiGenT_main'
 args.workers=1
 args.bm_dir='data/datasets/DiLiGenT/pmsData'
 args.in_img_num = 96
-torch.cuda.set_device(1)
+torch.cuda.set_device(0)
 log = logger.Logger(args)
 repeat=5
 
@@ -66,7 +68,7 @@ def main(args):
     for i,r in zip(range(repeat),rs):
         for ii,rr in zip(range(10),r):
             worksheet.write(i + 1, ii, label=rr)
-    workbook.save('result/robust/pro.xls')
+    workbook.save('robust_pro.xls')
 
 if __name__ == '__main__':
     # torch.manual_seed(args.seed)
