@@ -6,7 +6,7 @@ import math
 
 
 class Attention_layer(nn.Module):
-    def __init__(self, ch_in, batch=False, factor=1, bias=False, extra=False):
+    def __init__(self, ch_in, batch=False, factor=1, bias=True, extra=False):
         super(Attention_layer, self).__init__()
         # self.atten_factor=nn.Parameter(torch.zeros(1).cuda())
         self.atten_factor=1
@@ -83,21 +83,21 @@ class FeatExtractor(nn.Module):
         # x_mean=torch.std(x,unbiased=True,dim=2).unsqueeze(2).expand(x.shape)
         # x=x/(torch.max(x)+0.000000001)
         out = self.conv1(x)
-        # out = self.at1(out)
-        # out = self.bn1(out)
+        out = self.at1(out)
+        out = self.bn1(out)
         # m = nn.LayerNorm(out.size()[1:], elementwise_affine=False)
         # out = m(out)
         out = self.conv2(out)
         out0 = self.conv3(out)
         out = out0+self.conv31(out)
-        # out = self.at2(out)
-        # out = self.bn2(out)
+        out = self.at2(out)
+        out = self.bn2(out)
         # m = nn.LayerNorm(out.size()[1:], elementwise_affine=False)
         # out = m(out)
         out0 = self.conv5(out)
         out = out0+self.conv51(out)
-        # out = self.at3(out)
-        # out = self.bn3(out)
+        out = self.at3(out)
+        out = self.bn3(out)
         # m = nn.LayerNorm(out.size()[1:], elementwise_affine=False)
         # out = m(out)
         out_feat = self.conv7(out)
