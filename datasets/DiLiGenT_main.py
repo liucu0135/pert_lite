@@ -79,8 +79,7 @@ class DiLiGenT_main(data.Dataset):
                 np.random.seed()
                 select_idx = np.random.permutation(len(self.names))[:self.args.in_img_num]
 
-
-
+        select_idx = np.random.permutation(len(select_idx))
         img_list   = [os.path.join(self.root, obj, self.names[i]) for i in select_idx]
         intens     = [np.diag(1 / self.intens[obj][i]) for i in select_idx]
         normal_path = os.path.join(self.root, obj, 'Normal_gt.mat')
